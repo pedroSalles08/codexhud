@@ -1,0 +1,61 @@
+<Window x:Class="CodexHud.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Codex HUD — JSONL diagnostic"
+        Height="390"
+        Width="560"
+        MinHeight="340"
+        MinWidth="500">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="13"
+                   Foreground="#666"
+                   Text="Temporary rollout JSONL diagnostic" />
+
+        <StackPanel Grid.Row="1" Margin="0,18,0,18">
+            <TextBlock x:Name="ContextText" FontSize="24" Text="Context: —" />
+            <TextBlock x:Name="PrimaryText" FontSize="24" Margin="0,8,0,0" Text="5h: —" />
+            <TextBlock x:Name="SecondaryText" FontSize="24" Margin="0,8,0,0" Text="Week: —" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Thread ID" />
+            <TextBlock x:Name="ThreadIdText" Grid.Column="1" Text="—" TextTrimming="CharacterEllipsis" />
+            <TextBlock Grid.Row="1" Text="last total_tokens" />
+            <TextBlock x:Name="TotalTokensText" Grid.Row="1" Grid.Column="1" Text="—" />
+            <TextBlock Grid.Row="2" Text="model_context_window" />
+            <TextBlock x:Name="ContextWindowText" Grid.Row="2" Grid.Column="1" Text="—" />
+            <TextBlock Grid.Row="3" Text="Last snapshot" />
+            <TextBlock x:Name="SnapshotTimeText" Grid.Row="3" Grid.Column="1" Text="—" />
+            <TextBlock Grid.Row="4" Text="Primary resetsAt" />
+            <TextBlock x:Name="PrimaryResetText" Grid.Row="4" Grid.Column="1" Text="—" />
+            <TextBlock Grid.Row="5" Text="Secondary resetsAt" />
+            <TextBlock x:Name="SecondaryResetText" Grid.Row="5" Grid.Column="1" Text="—" />
+        </Grid>
+
+        <TextBlock x:Name="MonitorStatusText"
+                   Grid.Row="3"
+                   Margin="0,18,0,0"
+                   Foreground="#666"
+                   Text="Starting read-only monitor…" />
+    </Grid>
+</Window>
