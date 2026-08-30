@@ -1,6 +1,33 @@
+# Build and test output
 bin/
 obj/
 .vs/
 TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# IDE and machine-local settings
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
+appsettings.*.local.json
+
+# Codex local state and sensitive data
+.codex/
+auth.json
+rollout-*.jsonl
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Local logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
