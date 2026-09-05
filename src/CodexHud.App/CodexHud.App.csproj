@@ -7,6 +7,9 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
+    <AssemblyName>CodexHUD</AssemblyName>
+    <Product>CodexHUD</Product>
+    <Description>A compact, always-on-top usage HUD for Codex Desktop.</Description>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>

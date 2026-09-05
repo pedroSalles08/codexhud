@@ -1,7 +1,20 @@
 # Codex HUD
 
-Technical vertical slice for observing Codex Desktop usage from rollout JSONL files.
-This is not the final overlay UI.
+A compact, always-on-top companion HUD for observing Codex Desktop usage.
+
+## Download and install
+
+1. Open the [latest release](https://github.com/pedroSalles08/codexhud/releases/latest).
+2. Download `CodexHUD-Setup-x64.exe`.
+3. Run the installer.
+
+The installer is self-contained, so the .NET runtime does not have to be installed
+separately. It adds CodexHUD to the Start menu, which also makes it discoverable by
+searching for `CodexHUD` in Windows. Uninstall it later from **Settings > Apps >
+Installed apps**.
+
+The installer is not code-signed yet, so Windows may identify the publisher as
+unknown until the project adopts a signing certificate.
 
 ## Current scope
 
@@ -16,7 +29,9 @@ This is not the final overlay UI.
 - watches for filesystem changes without a periodic polling loop;
 - marks a rate-limit window as `~100%` after its `resets_at` passes, until Codex
   writes a fresh authoritative snapshot;
-- presents the state in a deliberately temporary WPF diagnostic window.
+- presents the three primary readings in a compact WPF instrument;
+- expands in place for reset times, freshness, context tokens, and additional buckets;
+- uses a restrained Windows backdrop when supported, with an opaque fallback.
 
 The monitor is read-only. The probe uses only `initialize`, the `initialized`
 notification, and `account/rateLimits/read`; it never invokes a thread method. It
@@ -32,6 +47,21 @@ model_context_window`, rounded to the nearest whole percentage.
 ```powershell
 dotnet run --project src/CodexHud.App/CodexHud.App.csproj
 ```
+
+## Build the Windows installer
+
+Install the .NET 10 SDK and Inno Setup 6 or 7, then run:
+
+```powershell
+.\scripts\build-installer.ps1
+```
+
+The self-contained app and installer are written under `artifacts/`.
+
+## Publish a release
+
+Pushing a version tag such as `v0.1.0` runs the test suite, builds the x64 installer,
+and publishes it on GitHub Releases automatically.
 
 ## Test
 
