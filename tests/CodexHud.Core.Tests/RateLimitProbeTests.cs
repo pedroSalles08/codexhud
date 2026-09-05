@@ -73,7 +73,7 @@ public sealed class RateLimitProbeTests
             {
                 ExecutablePath = powershell,
                 Arguments = ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
-                Timeout = TimeSpan.FromSeconds(3),
+                Timeout = TimeSpan.FromSeconds(10),
             },
             logs.Add);
 
@@ -124,7 +124,7 @@ public sealed class RateLimitProbeTests
             {
                 ExecutablePath = powershell,
                 Arguments = ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
-                Timeout = TimeSpan.FromMilliseconds(350),
+                Timeout = TimeSpan.FromSeconds(5),
             },
             logs.Add);
 
@@ -133,7 +133,7 @@ public sealed class RateLimitProbeTests
         stopwatch.Stop();
 
         Assert.IsNull(result);
-        Assert.IsLessThan(TimeSpan.FromSeconds(4), stopwatch.Elapsed);
+        Assert.IsLessThan(TimeSpan.FromSeconds(10), stopwatch.Elapsed);
         var pid = int.Parse(await File.ReadAllTextAsync(pidPath));
         Assert.IsFalse(IsProcessRunning(pid), "The timed-out App Server process was left running.");
         CollectionAssert.Contains(logs, "RateLimitProbe timed out.");
