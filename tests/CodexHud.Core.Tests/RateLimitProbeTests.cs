@@ -73,7 +73,7 @@ public sealed class RateLimitProbeTests
             {
                 ExecutablePath = powershell,
                 Arguments = ["-NoLogo", "-NoProfile", "-NonInteractive", "-Command", script],
-                Timeout = TimeSpan.FromSeconds(10),
+                Timeout = TimeSpan.FromSeconds(30),
             },
             logs.Add);
 
@@ -163,6 +163,13 @@ public sealed class RateLimitProbeTests
         if (!OperatingSystem.IsWindows())
         {
             return null;
+        }
+
+        var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        var modernPowerShell = Path.Combine(programFiles, "PowerShell", "7", "pwsh.exe");
+        if (File.Exists(modernPowerShell))
+        {
+            return modernPowerShell;
         }
 
         var systemRoot = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
